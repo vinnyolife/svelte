@@ -1,49 +1,69 @@
 {
-  "name": "svelte-monorepo",
-  "version": "0.0.1",
-  "description": "monorepo for svelte and friends",
-  "private": true,
+  "name": "svelte",
+  "version": "4.0.0",
+  "description": "Cybernetically enhanced web apps",
   "type": "module",
   "license": "MIT",
-  "packageManager": "pnpm@10.4.0",
-  "engines": {
-    "pnpm": ">=9.0.0"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sveltejs/svelte.git"
+    "url": "https://github.com/sveltejs/svelte"
   },
   "scripts": {
-    "build": "pnpm -r --filter=./packages/* build",
-    "check": "cd packages/svelte && pnpm build && cd ../../ && pnpm -r check",
-    "lint": "eslint && prettier --check .",
-    "format": "prettier --write .",
-    "test": "vitest run",
-    "changeset:version": "changeset version && pnpm -r generate:version && git add --all",
-    "changeset:publish": "changeset publish",
-    "bench": "NODE_ENV=production node --allow-natives-syntax ./benchmarking/run.js",
-    "bench:compare": "NODE_ENV=production node --allow-natives-syntax ./benchmarking/compare/index.js",
-    "bench:debug": "NODE_ENV=production node --allow-natives-syntax --inspect-brk ./benchmarking/run.js"
+    "build scripts    "dev": "node scripts/build.js --watch",
+    test run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .js,.ts",
+    "format": "prettier --write src",
+    "prepublishOnly": "npm run build"
   },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./compiler": {
+      "types": "./types/compiler.d.ts",
+      "import": "./src/compiler/index.js"
+    },
+    "./internal": {
+      "types": "./types/internal.d.ts",
+      "import": "./src/internal/index.js"
+    },
+    "./store": {
+      "types": "./types/store.d.ts",
+      "import": "./src/store/index.js"
+    },
+    "./motion": {
+      "types": "./types/motion.d.ts",
+      "import": "./src/motion/index.js"
+    },
+    "./transition": {
+      "types": "./types/transition.d.ts",
+      "import": "./src/transition/index.js"
+    },
+    "./animate": {
+      "types": "./types/animate.d.ts",
+      "import": "./src/animate/index.js"
+    },
+    "./easing": {
+      "types": "./types/easing.d.ts",
+      "import": "./src/easing/index.js"
+    },
+    "./action": {
+      "types": "./types/action.d.ts"
+    }
+  },
+  "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
-    "@eslint/js": "^10.0.0",
-    "@sveltejs/eslint-config": "^9.0.0",
-    "@svitejs/changesets-changelog-github-compact": "^1.1.0",
-    "@types/node": "^20.11.5",
-    "@types/picomatch": "^4.0.2",
-    "@vitest/coverage-v8": "^2.1.9",
-    "eslint": "^10.0.0",
-    "eslint-plugin-lube": "^0.5.1",
-    "eslint-plugin-svelte": "^3.15.0",
-    "jsdom": "25.0.1",
-    "playwright": "^1.58.0",
-    "prettier": "^3.2.4",
-    "prettier-plugin-svelte": "^3.4.0",
-    "svelte": "workspace:^",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.56.0",
-    "v8-natives": "^1.2.5",
-    "vitest": "^2.1.9"
+    "@types/node": "^20.0.0",
+    "acorn": "^8.10.0",
+    "acorn-typescript": "^1.4.13",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.2.0",
+    "vitest": "^0.34.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
