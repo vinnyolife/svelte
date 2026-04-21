@@ -12,6 +12,7 @@
     "build": "node scripts/build.js",
     "dev": "node scripts/build.js --watch",
     "test": "vitest run",
+    "test:ui": "vitest --ui",
     "watch": "vitest",
     "lint": "eslint src --ext .js,.ts",
     "format": "prettier --write src",
@@ -57,6 +58,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@vitest/ui": "^0.34.0",
     "acorn": "^8.10.0",
     "acorn-typescript": "^1.4.13",
     "eslint": "^8.50.0",
